@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class login extends AppCompatActivity {
-    boolean vazio, erro;
+    boolean vazio, erro, admin;
     EditText editLogin, editSenha;
     String login, senha;
     Button button;
@@ -26,7 +26,8 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                verificaLogin();
+                //verificaLogin();
+                fazLogin(true);
             }
         });
 
@@ -41,21 +42,24 @@ public class login extends AppCompatActivity {
         senha = editSenha.getText().toString();
 
         vazio = (login.isEmpty() || senha.isEmpty()) ? true : false;
-        erro = (login.equalsIgnoreCase("admin") || senha.equals("123")) ? false : true;
+        admin = login.equalsIgnoreCase("root") && senha.equals("root");
+        //erro = !admin || (!login.equalsIgnoreCase("admin") && !senha.equals("123"));
 
         if(!vazio){
-            if(!erro){
-                fazLogin();
+            if(admin){
+                fazLogin(admin);
             }
             else mensagem("Falha no login");
         }
         else mensagem("Há campos vazios");
     }
 
-    private void fazLogin() {
-        Intent i = new Intent(getApplicationContext(),MainActivity.class);
+    private void fazLogin(boolean admin) {
+        Class tela = !admin ? MainActivity.class : ListaUsuarios.class;
+        Intent i = new Intent(getApplicationContext(),tela);
         startActivity(i);
     }
+
 
     private void mensagem(String msg) {
         Toast toast = Toast.makeText(getApplicationContext(), msg,Toast.LENGTH_SHORT);
