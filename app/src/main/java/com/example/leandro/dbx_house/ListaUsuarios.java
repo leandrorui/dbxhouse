@@ -12,20 +12,28 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.leandro.dbx_house.repository.UsuarioRepository;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ListaUsuarios extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        super.onCreate(savedInstanceState);
+        UsuarioRepository user = new UsuarioRepository(this);
         setContentView(R.layout.activity_lista_usuarios);
         String[] dados = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
                 "Honeycomb", "Ice Cream Sandwich", "Jelly Bean",
                 "KitKat", "Lollipop", "Marshmallow", "Nougat" };
 
-        List<String> usuarios = Arrays.asList(dados);
+        //String[] dados = user.SelecionarTodos();
+        //Object[] usuarios = user.SelecionarTodos().toArray();
+        //List<String> usuarios = Arrays.asList(dados);
+        mensagem(user.SelecionarTodos().toString());
+
         final ListView listview = (ListView) findViewById(R.id.userview);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

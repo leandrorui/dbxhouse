@@ -68,6 +68,3 @@ public class login extends AppCompatActivity {
         toast.show();
     }
 }
-
-
-

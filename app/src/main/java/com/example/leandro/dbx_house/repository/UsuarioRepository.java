@@ -121,13 +121,7 @@ public class UsuarioRepository {
 
         //MONTA A QUERY A SER EXECUTADA
         StringBuilder stringBuilderQuery = new StringBuilder();
-        stringBuilderQuery.append(" SELECT id_usuario,      ");
-        stringBuilderQuery.append(" ds_nomeusuario,        ");
-        stringBuilderQuery.append(" ds_senha,    ");
-        stringBuilderQuery.append(" fl_admin,        ");
-        stringBuilderQuery.append(" FROM  tb_usuario       ");
-        stringBuilderQuery.append(" ORDER BY ds_nomeusuario       ");
-
+        stringBuilderQuery.append("SELECT * FROM  tb_usuario;");
 
         //CONSULTANDO OS REGISTROS CADASTRADOS
         Cursor cursor = databaseUtil.GetConexaoDataBase().rawQuery(stringBuilderQuery.toString(), null);
