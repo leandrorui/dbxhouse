@@ -1,9 +1,11 @@
 package com.example.leandro.dbx_house;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,14 +45,31 @@ public class ListaUsuarios extends AppCompatActivity {
             }
         });
 
-        EditText editpass= (EditText) findViewById(R.id.textViewGravaPasswd);
+        final EditText editpass= (EditText) findViewById(R.id.textViewGravaPasswd);
         editpass.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
+                if (hasFocus) {
                     // code to execute when EditText loses focus
+                    listview.setVisibility(View.INVISIBLE);
+                }
+                if (!hasFocus) {
+                    InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     listview.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        final Button button = (Button)findViewById(R.id.buttonGrava);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //verificaLogin();
+                listview.setVisibility(View.VISIBLE);
+                listview.requestFocus();
             }
         });
 

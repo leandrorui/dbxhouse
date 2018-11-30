@@ -27,7 +27,7 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 //verificaLogin();
-                fazLogin(true);
+                verificaLogin();
             }
         });
 
@@ -42,11 +42,13 @@ public class login extends AppCompatActivity {
         senha = editSenha.getText().toString();
 
         vazio = (login.isEmpty() || senha.isEmpty()) ? true : false;
+        erro = !login.equalsIgnoreCase("admin") && !senha.equals("123");
         admin = login.equalsIgnoreCase("root") && senha.equals("root");
-        //erro = !admin || (!login.equalsIgnoreCase("admin") && !senha.equals("123"));
+
 
         if(!vazio){
-            if(admin){
+            if(!erro || admin){
+
                 fazLogin(admin);
             }
             else mensagem("Falha no login");
