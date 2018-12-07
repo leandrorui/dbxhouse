@@ -44,6 +44,11 @@
         layout="@layout/content_cadastro_usuario"
         android:visibility="invisible"/>
 
+    <include
+        android:id="@+id/includelistauduarios"
+        layout="@layout/content_usuarios"
+        android:visibility="invisible"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

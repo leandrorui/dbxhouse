@@ -1,15 +1,29 @@
 package com.example.leandro.DBXHouse.model;
 
-public class Usuario {
+public class Usuario  implements Serializablezable {
 
     private Integer idUsuario;
+    private String login;
+    private int senhaUsuario;
+
     private String nomeUsuario;
-    private String senhaUsuario;
     private String sobrenome;
     private String dataNasc;
     private boolean isAdmin;
     private boolean isMobile;
     private boolean isVisitante;
+
+    public Usuario(int id, String login, int senha, String nome, String sobrenome, String dataNasc, boolean isAdmin, boolean isMobile, boolean isVisitante) {
+        this.idUsuario = id;
+        this.nomeUsuario = login;
+        this.senhaUsuario = senha;
+        this.nomeUsuario = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.isAdmin = isAdmin;
+        this.isMobile = isMobile;
+        this.isVisitante = isVisitante;
+    }
 
     public boolean isVisitante() {
         return isVisitante;
@@ -35,11 +49,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getSenhaUsuario() {
+    public int getSenhaUsuario() {
         return senhaUsuario;
     }
 
-    public void setSenhaUsuario(String senhaUsuario) {
+    public void setSenhaUsuario(int senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
     }
 
@@ -73,5 +87,15 @@ public class Usuario {
 
     public void setMobile(boolean mobile) {
         isMobile = mobile;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        return this.idUsuario == ((Usuario)o).idUsuario;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.idUsuario;
     }
 }

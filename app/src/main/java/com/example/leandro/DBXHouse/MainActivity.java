@@ -62,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.includemain).setVisibility(View.VISIBLE);
-                findViewById(R.id.includecadastrousuario).setVisibility(View.INVISIBLE);
-                findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                //findViewById(R.id.includelistauduarios).setVisibility(View.VISIBLE);
+                //findViewById(R.id.includecadastrousuario).setVisibility(View.INVISIBLE);
+                //findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                Toast.makeText(MainActivity.this, "cancelando", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.includelogin).setVisibility(View.VISIBLE);
+                findViewById(R.id.includelistauduarios).setVisibility(View.VISIBLE);
                 findViewById(R.id.includelogin).setVisibility(View.INVISIBLE);
                 findViewById(R.id.includemain).setVisibility(View.INVISIBLE);
                 findViewById(R.id.novoUsuario).setVisibility(View.VISIBLE);
@@ -86,13 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
-                //Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                //startActivityForResult(intent, REQUEST_SIGNUP);
+
                 Toast.makeText(MainActivity.this, "Apertou, abestado", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.includelogin).setVisibility(View.INVISIBLE);
-                findViewById(R.id.includenovousuario).setVisibility(View.VISIBLE);
-                //findViewById(R.id.fab).setVisibility(View.INVISIBLE);
+                findViewById(R.id.includelistauduarios).setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -143,17 +142,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     RecyclerView recyclerView;
-    ClienteAdapter adapter;
+    UsuarioAdapter adapter;
 
     private void configurarRecycler() {
         // Configurando o gerenciador de layout para ser uma lista.
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView_usuarios);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // Adiciona o adapter que irá anexar os objetos à lista.
-        ClienteDAO dao = new ClienteDAO(this);
-        adapter = new ClienteAdapter(dao.retornarTodos());
+        UsuarioDAO dao = new UsuarioDAO(this);
+        adapter = new UsuarioAdapter(dao.retornarTodos());
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }

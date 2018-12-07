@@ -11,10 +11,10 @@ import java.util.List;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioHolder> {
 
-    private final List<Usuario> clientes;
+    private final List<Usuario> usuarios;
 
-    public UsuarioAdapter(List<Usuario> clientes) {
-        this.clientes = clientes;
+    public UsuarioAdapter(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override
@@ -25,16 +25,16 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioHolder> {
 
     @Override
     public void onBindViewHolder(UsuarioHolder holder, int position) {
-        holder.nomeUsuario.setText(clientes.get(position).getNomeUsuario());
+        holder.nomeUsuario.setText(usuarios.get(position).getNomeUsuario());
     }
 
     @Override
     public int getItemCount() {
-        return clientes != null ? clientes.size() : 0;
+        return usuarios != null ? usuarios.size() : 0;
     }
 
-    public void adicionarUsuario(Usuario cliente){
-        clientes.add(cliente);
+    public void adicionarUsuario(Usuario usuario){
+        usuarios.add(usuario);
         notifyItemInserted(getItemCount());
     }
 }
