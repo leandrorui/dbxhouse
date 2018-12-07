@@ -1,9 +1,10 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.repository;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.leandro.DBXHouse.DbGateway;
 import com.example.leandro.DBXHouse.model.Cliente;
 
 import java.util.ArrayList;

@@ -1,8 +1,10 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.Uteis;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.leandro.DBXHouse.R;
 
 public class ClienteHolder extends RecyclerView.ViewHolder {
 

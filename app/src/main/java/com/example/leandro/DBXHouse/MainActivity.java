@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.includemain).setVisibility(View.INVISIBLE);
                 findViewById(R.id.includecadastrousuario).setVisibility(View.VISIBLE);
                 findViewById(R.id.novoUsuario).setVisibility(View.INVISIBLE);
+                findViewById(R.id.includelistauduarios).setVisibility(View.INVISIBLE);
             }
         });
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.includemain).setVisibility(View.INVISIBLE);
                 findViewById(R.id.includecadastrousuario).setVisibility(View.VISIBLE);
                 findViewById(R.id.fab).setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -62,10 +64,9 @@ public class MainActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //findViewById(R.id.includelistauduarios).setVisibility(View.VISIBLE);
-                //findViewById(R.id.includecadastrousuario).setVisibility(View.INVISIBLE);
-                //findViewById(R.id.fab).setVisibility(View.VISIBLE);
-                Toast.makeText(MainActivity.this, "cancelando", Toast.LENGTH_SHORT).show();
+                limpacampos();
+                listarUsuarios();
+                //Toast.makeText(MainActivity.this, "cancelando", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,12 +74,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.includelistauduarios).setVisibility(View.VISIBLE);
-                findViewById(R.id.includelogin).setVisibility(View.INVISIBLE);
-                findViewById(R.id.includemain).setVisibility(View.INVISIBLE);
-                findViewById(R.id.novoUsuario).setVisibility(View.VISIBLE);
+                listarUsuarios();
                 Toast.makeText(MainActivity.this, "Logando... abestado", Toast.LENGTH_SHORT).show();
-                configurarRecycler();
             }
         });
 
@@ -141,6 +138,152 @@ public class MainActivity extends AppCompatActivity {
 //
     }
 
+    private void listarUsuarios() {
+        listarUsuarios(View.VISIBLE);
+    }
+
+    private void limpacampos() {
+        CheckBox isAdmin = (CheckBox)findViewById(R.id.chkAdmin);
+        isAdmin.setChecked(false);
+    }
+
+    private void  listarUsuarios(int visibilidade) {
+
+        if(visibilidade == 0) {
+            apagarTelas();
+        }
+
+        //findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+        //findViewById(R.id.includelogin).setVisibility(visibilidade);
+        findViewById(R.id.includemain).setVisibility(visibilidade);
+        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+        configurarRecycler();
+    }
+
+    private void cadastrarUsuarios(int visibilidade) {
+
+        if(visibilidade == 0) {
+            apagarTelas();
+        }
+
+        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+        findViewById(R.id.includelogin).setVisibility(visibilidade);
+        findViewById(R.id.includemain).setVisibility(visibilidade);
+        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+    private void listarDispositivos(int visibilidade) {
+//
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//
+//        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelogin).setVisibility(visibilidade);
+//        findViewById(R.id.includemain).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+    private void cadastrarDispositivos(int visibilidade) {
+//
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//
+//        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelogin).setVisibility(visibilidade);
+//        findViewById(R.id.includemain).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+    private void listarComodos(int visibilidade) {
+//
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelogin).setVisibility(visibilidade);
+//        findViewById(R.id.includemain).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+    private void cadastrarComodos(int visibilidade) {
+//
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//            findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//            findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//            findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//            findViewById(R.id.includelogin).setVisibility(visibilidade);
+//            findViewById(R.id.includemain).setVisibility(visibilidade);
+//            findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+    private void listarSensores(int visibilidade) {
+//
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelogin).setVisibility(visibilidade);
+//        findViewById(R.id.includemain).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+
+    }
+
+
+    private void cadastrarSensores(int visibilidade) {
+//        Toast.makeText(this, "apagando sensores...", Toast.LENGTH_SHORT).show();
+//        boolean acende = intToBoolean(visibilidade);
+//        if(acende) {
+//            apagarTelas();
+//        }
+//
+//        findViewById(R.id.includecadastrousuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelistauduarios).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//        findViewById(R.id.includelogin).setVisibility(visibilidade);
+//        findViewById(R.id.includemain).setVisibility(visibilidade);
+//        findViewById(R.id.novoUsuario).setVisibility(visibilidade);
+//
+
+    }
+
+    private void apagarTelas() {
+        findViewById(R.id.includelogin).setVisibility(View.INVISIBLE);
+        cadastrarUsuarios(View.INVISIBLE);
+        listarDispositivos(View.INVISIBLE);
+        cadastrarDispositivos(View.INVISIBLE);
+        listarComodos(View.INVISIBLE);
+        cadastrarComodos(View.INVISIBLE);
+        listarSensores(View.INVISIBLE);
+        cadastrarSensores(View.INVISIBLE);
+    }
+
     RecyclerView recyclerView;
     UsuarioAdapter adapter;
 
@@ -178,4 +321,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void nada(){}
 }
