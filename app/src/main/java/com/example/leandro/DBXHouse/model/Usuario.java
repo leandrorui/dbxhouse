@@ -9,17 +9,22 @@ public class Usuario  implements Serializablezable {
     private String nomeUsuario;
     private String sobrenome;
     private String dataNasc;
+
     private boolean isAdmin;
     private boolean isMobile;
     private boolean isVisitante;
 
-    public Usuario(int id, String login, int senha, String nome, String sobrenome, String dataNasc, boolean isAdmin, boolean isMobile, boolean isVisitante) {
+    public Usuario(int id, String login, int senha,
+                   String nome, String sobrenome, String dataNasc,
+                   boolean isAdmin, boolean isMobile, boolean isVisitante) {
         this.idUsuario = id;
-        this.nomeUsuario = login;
+        this.login = login;
         this.senhaUsuario = senha;
+
         this.nomeUsuario = nome;
         this.sobrenome = sobrenome;
         this.dataNasc = dataNasc;
+
         this.isAdmin = isAdmin;
         this.isMobile = isMobile;
         this.isVisitante = isVisitante;

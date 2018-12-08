@@ -1,6 +1,5 @@
 package com.example.leandro.DBXHouse;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,13 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.leandro.DBXHouse.model.Cliente;
+import com.example.leandro.DBXHouse.View.UsuarioAdapter;
+import com.example.leandro.DBXHouse.model.Usuario;
+import com.example.leandro.DBXHouse.repository.UsuarioDAO;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btnCancelar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                limpacampos();
+                limpaCampos();
                 listarUsuarios();
                 //Toast.makeText(MainActivity.this, "cancelando", Toast.LENGTH_SHORT).show();
             }
@@ -92,57 +91,66 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnSalvar = (Button)findViewById(R.id.btnSalvar);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        Button insereUsuario = (Button)findViewById(R.id.btnSalvar);
+        insereUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //carregando os campos
-                //EditText txtNome = (EditText)findViewById(R.id.txtNome);
-                //Spinner spnEstado = (Spinner)findViewById(R.id.spnEstado);
-                //RadioGroup rgSexo = (RadioGroup)findViewById(R.id.rgSexo);
-                //CheckBox chkVip = (CheckBox)findViewById(R.id.chkVip);
+                EditText edtLogin = (EditText)findViewById(R.id.txtNovoLogin);
+                EditText edtSenha = (EditText)findViewById(R.id.txtNovoSenha);
+
+                EditText edtNome = (EditText)findViewById(R.id.txtNovoNomeUsuario);
+                EditText edtSobrenome = (EditText)findViewById(R.id.txtNovoSobrenome);
+                EditText edtDataNasc = (EditText)findViewById(R.id.txtDataNasc);
+
+                CheckBox chkAdmin = (CheckBox)findViewById(R.id.chkAdmin);
+                CheckBox chkMobile = (CheckBox)findViewById(R.id.chkMobile);
+                CheckBox chkVisitante= (CheckBox)findViewById(R.id.chkVisitante);
 
                 //pegando os valores
-                //String nome = txtNome.getText().toString();
-                //String uf = spnEstado.getSelectedItem().toString();
-                //boolean vip = chkVip.isChecked();
-               // String sexo = rgSexo.getCheckedRadioButtonId() == R.id.rbMasculino ? "M" : "F";
+                String login = edtLogin.getText().toString();
+                int senha = Integer.parseInt(edtSenha.getText().toString());
+
+                String nome = edtNome.getText().toString();
+                String sobrenome = edtSobrenome.getText().toString();
+                String dataNasc = edtDataNasc.getText().toString();
+
+                boolean isAdmin = chkAdmin.isChecked();
+                boolean isMobile = chkMobile.isChecked();
+                boolean isVisitante = chkVisitante.isChecked();
+
 
                 //salvando os dados
-                //ClienteDAO dao = new ClienteDAO(getBaseContext());
-                //boolean sucesso = dao.salvar(nome, sexo, uf, vip);
-//                if(sucesso) {
-//
-//                    Cliente cliente = dao.retornarUltimo();
-//                    adapter.adicionarCliente(cliente);
-//
-//                    //limpa os campos
-//                    txtNome.setText("");
-//                    rgSexo.setSelected(false);
-//                    spnEstado.setSelection(0);
-//                    chkVip.setChecked(false);
-//
-//                    Snackbar.make(view, "Salvou!", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
-//                    findViewById(R.id.includemain).setVisibility(View.VISIBLE);
-//                    findViewById(R.id.includecadastro).setVisibility(View.INVISIBLE);
-//                    findViewById(R.id.fab).setVisibility(View.VISIBLE);
-//                }else{
-//                    Snackbar.make(view, "Erro ao salvar, consulte os logs!", Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
-//                }
-//
-//
+                UsuarioDAO dao = new UsuarioDAO(getBaseContext());
+                boolean sucesso = dao.salvar(login, senha, nome, sobrenome, dataNasc, isAdmin, isMobile, isVisitante);
+                if(sucesso) {
+
+                    Usuario usuario = dao.retornarUltimo();
+                    adapter.adicionarUsuario(usuario);
+
+                    //limpa os campos
+                    limpaCampos();
+
+                    Snackbar.make(view, "O usuário foi adicionado!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    listarUsuarios();
+                }else{
+                    Snackbar.make(view, "Erro ao salvar, consulte os logs!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+
             }
         });
-//
+
     }
 
     private void listarUsuarios() {
         listarUsuarios(View.VISIBLE);
     }
 
-    private void limpacampos() {
+    private void limpaCampos() {
         CheckBox isAdmin = (CheckBox)findViewById(R.id.chkAdmin);
         isAdmin.setChecked(false);
     }
@@ -286,7 +294,6 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     UsuarioAdapter adapter;
-
     private void configurarRecycler() {
         // Configurando o gerenciador de layout para ser uma lista.
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView_usuarios);

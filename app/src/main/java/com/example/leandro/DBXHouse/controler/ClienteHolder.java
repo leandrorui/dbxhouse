@@ -1,18 +1,20 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.controler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class UsuarioHolder extends RecyclerView.ViewHolder {
+import com.example.leandro.DBXHouse.R;
 
-    public TextView nomeUsuario;
+public class ClienteHolder extends RecyclerView.ViewHolder {
+
+    public TextView nomeCliente;
     public ImageButton btnEditar;
     public ImageButton btnExcluir;
 
-    public UsuarioHolder(View itemView) {
+    public ClienteHolder(View itemView) {
         super(itemView);
-        nomeUsuario = (TextView) itemView.findViewById(R.id.nomeCliente);
+        nomeCliente = (TextView) itemView.findViewById(R.id.nomeCliente);
         btnEditar = (ImageButton) itemView.findViewById(R.id.btnEdit);
         btnExcluir = (ImageButton) itemView.findViewById(R.id.btnDelete);
     }

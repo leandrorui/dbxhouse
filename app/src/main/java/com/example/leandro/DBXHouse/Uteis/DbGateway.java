@@ -1,4 +1,4 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.Uteis;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

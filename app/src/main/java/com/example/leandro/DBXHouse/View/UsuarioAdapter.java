@@ -1,9 +1,11 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.View;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.leandro.DBXHouse.R;
+import com.example.leandro.DBXHouse.controler.UsuarioHolder;
 import com.example.leandro.DBXHouse.model.Usuario;
 
 import java.util.List;

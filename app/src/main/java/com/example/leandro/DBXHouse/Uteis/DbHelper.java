@@ -1,4 +1,4 @@
-package com.example.leandro.DBXHouse;
+package com.example.leandro.DBXHouse.Uteis;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -54,7 +54,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public final String INSERT_INTO =
             new StringBuilder()
                     .append("INSERT INTO usuario	")
-                    .append("	VALUES ('1', 'leandro.rui', '12378', 'Leandro', 'Rui', '15111983', '1', '1', '0');")
+                    .append("	VALUES (null, 'leandro.rui', '12378', 'Leandro', 'Rui', '15111983', '1', '1', '0');")
                     .append("INSERT INTO tipo_sensor (nome_tipo_sensor)	")
                     .append("		VALUES 	('Luminosidade'),")
                     .append("				('Temperatura'),")
