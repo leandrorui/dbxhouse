@@ -59,7 +59,7 @@ public class UsuarioDAO {
     }
 
     public Usuario retornarUltimo(){
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM usuario ORDER BY ID DESC", null);
+        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM usuario ORDER BY id_usuario DESC", null);
         if(cursor.moveToFirst()){
 
             int id_usuario = cursor.getInt(cursor.getColumnIndex("id_usuario"));
