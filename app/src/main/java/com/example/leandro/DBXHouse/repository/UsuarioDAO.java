@@ -3,12 +3,16 @@ package com.example.leandro.DBXHouse.repository;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.widget.Toast;
 
+import com.example.leandro.DBXHouse.MainActivity;
 import com.example.leandro.DBXHouse.Uteis.DbGateway;
 import com.example.leandro.DBXHouse.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.CONTEXT_RESTRICTED;
 
 public class UsuarioDAO {
 
@@ -58,13 +62,27 @@ public class UsuarioDAO {
         return usuarios;
     }
 
+    public boolean retornaUsuario(String login, String senha) {
+
+        return retornarUltimo(login, Integer.parseInt(senha)) != null;
+
+    }
+
     public Usuario retornarUltimo(){
-        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM usuario ORDER BY id_usuario DESC", null);
+        String senha = "";
+        return retornarUltimo(null, Integer.parseInt(senha));
+    }
+
+    public Usuario retornarUltimo(String login, int senha){
+        boolean parametros = false;
+        parametros = !login.isEmpty() || !login.equalsIgnoreCase("");
+        String whereClause = parametros ? ("where login=\"" + login + "\" and senha=\"" + senha + "\"") : "";
+        Cursor cursor = gw.getDatabase().rawQuery("SELECT * FROM usuario "+whereClause+"ORDER BY id_usuario DESC", null);
         if(cursor.moveToFirst()){
 
             int id_usuario = cursor.getInt(cursor.getColumnIndex("id_usuario"));
-            String login = cursor.getString(cursor.getColumnIndex("login"));
-            int senha = cursor.getInt(cursor.getColumnIndex("senha"));
+            //login = cursor.getString(cursor.getColumnIndex("login"));
+            //senha = cursor.getInt(cursor.getColumnIndex("senha"));
 
             String nome_usuario = cursor.getString(cursor.getColumnIndex("nome_usuario"));
             String sobrenome = cursor.getString(cursor.getColumnIndex("sobrenome"));

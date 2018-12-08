@@ -22,6 +22,9 @@ import com.example.leandro.DBXHouse.View.UsuarioAdapter;
 import com.example.leandro.DBXHouse.model.Usuario;
 import com.example.leandro.DBXHouse.repository.UsuarioDAO;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-       EditText edtPassword = (EditText)findViewById(R.id.input_password);
-       EditText edtEmail = (EditText)findViewById(R.id.input_email);
-
-        edtEmail.setFocusable(true);
-        edtPassword.setFocusable(true);
 
         FloatingActionButton novoUsuario = (FloatingActionButton) findViewById(R.id.novoUsuario);
         novoUsuario.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listarUsuarios();
-                Toast.makeText(MainActivity.this, "Logando... abestado", Toast.LENGTH_SHORT).show();
+                if(verificaLogin())listarUsuarios();
             }
         });
 
@@ -144,6 +140,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean verificaLogin() {
+
+        EditText edtEmail = (EditText)findViewById(R.id.input_email);
+        EditText edtPassword = (EditText)findViewById(R.id.input_password);
+
+        String login = edtEmail.getText().toString();
+        String senha = edtPassword.getText().toString();
+
+        List<String> listaDeStrings = Arrays.asList(login, senha);
+
+        if(!verificaVazios(listaDeStrings)){
+            UsuarioDAO dao = new UsuarioDAO(this);
+            if(!dao.retornaUsuario(login, senha))
+                Toast.makeText(MainActivity.this, "falha no login", Toast.LENGTH_SHORT).show();
+            else return true;
+        }
+        else Toast.makeText(MainActivity.this, "Há campos vazios", Toast.LENGTH_SHORT).show();
+
+
+        /*
+        * Não tem a responsabilidade de fazer login. essa responsabilidade é do botão login ou
+        * do método fazLogin();
+        * O método verificaLogin apenas responde se pode ou não (boolean) fazer login.
+        * */
+        //listarUsuarios(View.VISIBLE);
+        return false;
+    }
+
+    private boolean verificaVazios(List<String> listaDeStrings) {
+        //True para "há campos vazios" e false para "Tudo certo, pode ser feliz"
+
+        for(String lista : listaDeStrings) {
+            if(lista.isEmpty() || lista.equalsIgnoreCase("")) return true;
+        }
+
+        return false;
     }
 
     private void listarUsuarios() {
