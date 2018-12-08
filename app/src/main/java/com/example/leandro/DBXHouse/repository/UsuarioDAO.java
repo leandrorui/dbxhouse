@@ -69,8 +69,7 @@ public class UsuarioDAO {
     }
 
     public Usuario retornarUltimo(){
-        String senha = "";
-        return retornarUltimo(null, Integer.parseInt(senha));
+        return retornarUltimo(null, 0);
     }
 
     public Usuario retornarUltimo(String login, int senha){
