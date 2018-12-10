@@ -1,5 +1,6 @@
 package com.example.leandro.DBXHouse;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -70,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(verificaLogin())listarUsuarios();
+                //if(verificaLogin())listarUsuarios();
+                if(verificaLogin())exibirMenu();
             }
         });
 
@@ -183,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
     private void listarUsuarios() {
         listarUsuarios(View.VISIBLE);
     }
+    private void exibirMenu() {
+        exibirMenu(View.VISIBLE);
+    }
 
     private void limpaCampos() {
         CheckBox isAdmin = (CheckBox)findViewById(R.id.chkAdmin);
@@ -203,6 +209,28 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.novoUsuario).setVisibility(visibilidade);
 
         configurarRecycler();
+    }
+    private void  exibirMenu(int visibilidade) {
+
+        if(visibilidade == 0) {
+            apagarTelas();
+        }
+
+        findViewById(R.id.includemenu).setVisibility(visibilidade);
+        hideKeyboard(this);
+
+        //configurarRecycler();
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void cadastrarUsuarios(int visibilidade) {

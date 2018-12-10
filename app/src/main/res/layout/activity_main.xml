@@ -49,6 +49,11 @@
         layout="@layout/content_usuarios"
         android:visibility="invisible"/>
 
+    <include
+        android:id="@+id/includemenu"
+        layout="@layout/menu"
+        android:visibility="invisible"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
