@@ -54,6 +54,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public final String INSERT_INTO =
             new StringBuilder()
                     .append("INSERT INTO usuario	")
+                    //.append("	VALUES (null, 'admin123', '12345678', 'Admin', 'Admin', '10/12/2018', '1', '1', '0');")
                     .append("	VALUES (null, 'leandro.rui', '12378', 'Leandro', 'Rui', '15111983', '1', '1', '0');")
                     .append("INSERT INTO tipo_sensor (nome_tipo_sensor)	")
                     .append("		VALUES 	('Luminosidade'),")
