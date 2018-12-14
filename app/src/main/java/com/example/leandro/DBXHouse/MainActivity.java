@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btnGaragem = (Button)findViewById(R.id.btnVerGaragem);
+        btnGaragem.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //visibilidade é um int: zero para true ou quatro para false.
+                exibirGaragem(0);
+            }
+        });
+
         TextView txtInserirUsuario = (TextView) findViewById(R.id.link_signup) ;
         txtInserirUsuario.setOnClickListener(new View.OnClickListener() {
 
@@ -248,6 +257,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.includemenu).setVisibility(visibilidade);
+        hideKeyboard(this);
+
+        //configurarRecycler();
+    }
+
+    private void  exibirGaragem(int visibilidade) {
+
+        if(visibilidade == 0) {
+            apagarTelas();
+        }
+
+        findViewById(R.id.includegaragem).setVisibility(visibilidade);
         hideKeyboard(this);
 
         //configurarRecycler();
@@ -418,13 +439,6 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-
-        switch (item.getItemId()) {
-            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
-                Toast.makeText(this, "voltar", Toast.LENGTH_SHORT).show();
-                break;
-            default:break;
         }
 
         return super.onOptionsItemSelected(item);

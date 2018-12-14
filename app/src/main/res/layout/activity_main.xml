@@ -37,6 +37,11 @@
         android:visibility="invisible"/>
 
     <include
+        android:id="@+id/includegaragem"
+        layout="@layout/garagem"
+        android:visibility="invisible"/>
+
+    <include
         android:id="@+id/includemain"
         layout="@layout/content_main"
         android:visibility="invisible"/>
