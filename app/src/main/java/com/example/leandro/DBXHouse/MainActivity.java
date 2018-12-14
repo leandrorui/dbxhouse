@@ -23,11 +23,15 @@ import android.widget.Toast;
 import com.example.leandro.DBXHouse.View.UsuarioAdapter;
 import com.example.leandro.DBXHouse.model.Usuario;
 import com.example.leandro.DBXHouse.repository.UsuarioDAO;
+import com.example.leandro.DBXHouse.controler.SigninActivity;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText usernameField,passwordField;
+    private TextView status,role,method;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,6 +187,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void loginPost(View view){
+        String username = "Teste";
+        String password = "Teste";
+        method.setText("Post Method");
+        new SigninActivity(this).execute(username,password);
     }
 
     private boolean verificaLogin() {

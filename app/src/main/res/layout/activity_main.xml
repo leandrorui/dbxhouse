@@ -79,4 +79,13 @@
         android:visibility="invisible"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textView6"
+        android:onClick="loginPost"
+        android:text="@string/LoginPost" />
+
 </android.support.design.widget.CoordinatorLayout>
