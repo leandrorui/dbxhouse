@@ -33,8 +33,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+        getSupportActionBar().setTitle("Seu titulo aqui");
+
 
         FloatingActionButton novoUsuario = (FloatingActionButton) findViewById(R.id.novoUsuario);
         novoUsuario.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.includecadastrousuario).setVisibility(View.VISIBLE);
                 findViewById(R.id.novoUsuario).setVisibility(View.INVISIBLE);
                 findViewById(R.id.includelistauduarios).setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                View viewById = findViewById(R.id.includemenu);
+                if (viewById.getVisibility() == View.VISIBLE) {
+                    Toast.makeText(MainActivity.this, "toolbar", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
 
@@ -60,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnCancelar = (Button)findViewById(R.id.btnCancelar);
         btnCancelar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                limpaCampos();
+                listarUsuarios();
+                //Toast.makeText(MainActivity.this, "cancelando", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btnListarUsuarios = (Button)findViewById(R.id.btnListarUsuarios);
+        btnListarUsuarios.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 limpaCampos();
@@ -352,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
         cadastrarComodos(View.INVISIBLE);
         listarSensores(View.INVISIBLE);
         cadastrarSensores(View.INVISIBLE);
+        exibirMenu(View.INVISIBLE);
     }
 
     RecyclerView recyclerView;
@@ -388,8 +419,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        switch (item.getItemId()) {
+            case android.R.id.home:  //ID do seu botão (gerado automaticamente pelo android, usando como está, deve funcionar
+                Toast.makeText(this, "voltar", Toast.LENGTH_SHORT).show();
+                break;
+            default:break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     public void nada(){}
+
+
 }
