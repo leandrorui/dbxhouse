@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
-        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
-        getSupportActionBar().setTitle("Seu titulo aqui");
+        //Essa porcaria deveria implementar um botão "voltar" na barra de navegação
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+//        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+//        getSupportActionBar().setTitle("Seu titulo aqui");
 
 
         FloatingActionButton novoUsuario = (FloatingActionButton) findViewById(R.id.novoUsuario);
